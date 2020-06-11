@@ -41,8 +41,8 @@ xx, yy, zz, W = Prevalance(12,99,99)
 fig = go.Figure()
 
 # Add traces, one for each slider step
-V = .75
-P = .8
+
+file_type = "Sensitivity"
 
 
 fig = go.Figure(data=go.Scatter(
@@ -55,12 +55,15 @@ fig = go.Figure(data=go.Scatter(
     showlegend=False
 ))
 
+set_Sensitivity = 0.82
+set_Specificity = 0.88
+set_Prevalance = 0.2
 
 
-for speci100 in np.arange(1, 100, 1):
-    speci = speci100/100
-    sense = 0.8
-    sick = 20
+for sensi100 in np.arange(1, 100, 1):
+    speci = set_Specificity
+    sense = sensi100/100
+    sick = set_Prevalance*100
     scaler = 2
     healthy = 100 - sick
     numSickPos = round(sense*sick)
@@ -123,6 +126,21 @@ for speci100 in np.arange(1, 100, 1):
 
 
 
+    ppv = PPV(sense*100,sick,speci*100)*100
+    npv = NPV(sense*100,sick,speci*100)*100
+    fig.add_trace(go.Scatter(
+        visible = False,
+        x=[1.7, 2.3],
+        y=[1.2, 1.2],
+        mode="text",
+        #name="Lines, Markers and Text",
+        text=["PPV: {: 2.0f}%".format(ppv), "NPV: {: 2.0f}%".format(npv)],
+        textposition="top center",
+        showlegend=False
+    ))
+
+
+
 
 fig.update_yaxes({
     'range': [0.6, 1.9],
@@ -145,31 +163,31 @@ fig.update_xaxes({
 #fig.data[12].visible = True
 #fig.data[13].visible = True
 
-fig.update_layout(title={'text':'Test Specificity: 40%'})
 
 # Create and add slider
 steps = []
-for j in range(int(int(len(fig.data)-1)/4)):
-    i = j*4
+for j in range(int(int(len(fig.data)-1)/5)):
+    i = j*5
     step = dict(
         method="update",
         args=[{"visible": [False] * len(fig.data)},
-              {"title": "Test specificity: " + str(j) + "%"}],  # layout attribute
-              ()
+              {"title": "{}: {}%".format(file_type,j)}],  # layout attribute
     )
     step["args"][0]["visible"][0] = True
     step["args"][0]["visible"][i] = True  # Toggle i'th trace to "visible"
     step["args"][0]["visible"][i-1] = True
     step["args"][0]["visible"][i-2] = True  # Toggle i'th trace to "visible"
     step["args"][0]["visible"][i-3] = True
+    step["args"][0]["visible"][i-4] = True
     #step["args"][0]["visible"][i-4] = True
     steps.append(step)
     #step["args"][0]["visible"][i] = True  # Toggle i'th trace to "visible"
     #steps.append(step)
 
+
 sliders = [dict(
-    active=10,
-    currentvalue={"prefix": "specificity: "},
+    active=32,
+    currentvalue={"prefix": "{}: ".format(file_type)},
     pad={"t": 50},
     steps=steps,
     tickcolor='white',
@@ -180,6 +198,7 @@ fig.data[161].visible = True
 fig.data[162].visible = True
 fig.data[163].visible = True
 fig.data[164].visible = True
+fig.data[165].visible = True
 
 
 
@@ -191,7 +210,7 @@ fig.add_annotation(
         y=1.8,
         #xref="x",
         #yref="y",
-        text="Test Positive",
+        text="Positive Tests",
         #showarrow=True,
         font=dict(
             family="Courier New, monospace",
@@ -218,7 +237,7 @@ fig.add_annotation(
         y=1.8,
         #xref="x",
         #yref="y",
-        text="Test Negative",
+        text="Negative Tests",
         #showarrow=True,
         font=dict(
             family="Courier New, monospace",
@@ -266,6 +285,58 @@ fig.add_annotation(
         )
 
 
+fig.add_annotation(
+        x=1.6,
+        y=.9,
+        #xref="x",
+        #yref="y",
+        text="Specificity: {: 2.0f}%".format(set_Specificity*100),
+        #showarrow=True,
+        font=dict(
+            family="Courier New, monospace",
+            size=14,
+            color="black"
+            ),
+        align="center",
+        arrowhead=2,
+        arrowsize=1,
+        arrowwidth=2,
+        arrowcolor="rgba(0,0,0,0)",
+        #ax=20,
+        #ay=-30,
+        bordercolor="white",
+        borderwidth=2,
+        borderpad=4,
+        bgcolor="white",
+        opacity=1
+        )
+
+fig.add_annotation(
+        x=1.6,
+        y=.8,
+        #xref="x",
+        #yref="y",
+        text="Prevalance: {: 2.0f}%".format(set_Prevalance*100),
+        #showarrow=True,
+        font=dict(
+            family="Courier New, monospace",
+            size=14,
+            color="black"
+            ),
+        align="center",
+        arrowhead=2,
+        arrowsize=1,
+        arrowwidth=2,
+        arrowcolor="rgba(0,0,0,0)",
+        #ax=20,
+        #ay=-30,
+        bordercolor="white",
+        borderwidth=2,
+        borderpad=4,
+        bgcolor="white",
+        opacity=1
+        )
+
 
 layout = Layout(
     paper_bgcolor='rgba(0,0,0,0)',
@@ -279,5 +350,10 @@ fig.update_layout(
     sliders=sliders
 )
 
+fig.update_layout(title={'text':'{}: 32%'.format(file_type),'x':0.5,'xanchor':'center'})
+
+
 
 fig.show()
+
+fig.write_html("htmls/{}_Round.html".format(file_type))
