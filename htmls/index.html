@@ -1,28 +1,64 @@
+<!DOCTYPE html>
 <html>
-<!-- Text between angle brackets is an HTML tag and is not displayed.
-Most tags, such as the HTML and /HTML tags that surround the contents of
-a page, come in pairs; some tags, like HR, for a horizontal rule, stand
-alone. Comments, such as the text you're reading, are not displayed when
-the Web page is shown. The information between the HEAD and /HEAD tags is
-not displayed. The information between the BODY and /BODY tags is displayed.-->
 <head>
-<title>Enter a title, displayed at the top of the window.</title>
+    <title>Actually Teaching NPV</title>
 </head>
-<!-- The information between the BODY and /BODY tags is displayed.-->
 <body>
-<h1>Enter the main heading, usually the same as the title.</h1>
-<p>Be <b>bold</b> in stating your key points. Put them in a list: </p>
+    <p align="center" style="font-size:36px"><b> Actually Teaching Positive and Negative Predictive Values</b></p>
+
+<p align="center"><input type="image" src="https://raw.githubusercontent.com/robertej19/npv/master/htmls/htmlpics/TuftsGrid.PNG" alt="Submit" width="700" height="600"></p>
+<p align="center" style="font-size:36px"><b> What even is this?</b></p>
+<p align="center"><input type="image" src="https://raw.githubusercontent.com/robertej19/npv/master/htmls/htmlpics/Wrong.jpg" alt="Submit" width="500" height="350"></p>
+<p align="center"><input type="image" src="https://raw.githubusercontent.com/robertej19/npv/master/htmls/htmlpics/Way.jpg" alt="Submit" width="500" height="300"></p>
+
+
+<p align="center" style="font-size:18px">
+Negative and Positive predictive values are quantities formed from 3 independent variables. The math is extremely straightforward and should not be confusing. Instructors need to not shy away from the math; you are training advanced medical professionals, if I can't trust them with 3 variables how am I supposed to trust them with my life. PA students are extremely capable of basic math and it is belittling to treat them otherwise. The alternative to being taught poorly on purpose is that no one knew how to teach it properly. Not having medical professionals decently mathematically literate is a <a href="https://fliptomato.wordpress.com/2007/03/19/medical-researcher-discovers-integration-gets-75-citations/"><i><b>problem</b></i></a>. The honus falls on the math and the teaching communities to improve it. So here is an attempt.
+
+
+</p>
+
+
+<p align="center" style="font-size:18px">
+No equations here, just (hopefully) helpful plots, or at least more helpful than what is above. Negative Predictive Values (<b> NPV </b>) and Positive Predictive Values (<b>PPV</b>) are both functions of 3 variables:
+</p>
 <ul>
-<li>The first item in your list</li>
-<li>The second item; <i>italicize</i> key words</li>
+<li><b> Prevalence </b> - how many people have it
+<li><b> Sensitivity </b> - how many people that have it will test positive
+<li><b> Specificity </b> - how many people that don't have it will test negative
 </ul>
-<p>Improve your image by including an image. </p>
-<p><img src="http://www.mygifs.com/CoverImage.gif" alt="A Great HTML Resource"></p>
-<p>Add a link to your favorite <a href="https://www.dummies.com/">Web site</a>.
-Break up your page with a horizontal rule or two. </p>
-<hr>
-<p>Finally, link to <a href="page2.html">another page</a> in your own Web site.</p>
-<!-- And add a copyright notice.-->
-<p>&#169; Wiley Publishing, 2011</p>
+<p align="center" style="font-size:18px">A perfect test would be 100% sensitive and 100% specific, but this doesn't exist. Because of this, we also need NPV and PPV to get the full picture of what a test is telling us:
+</p>
+<ul>
+<li><b> PPV </b> - given that I tested <b> positive </b> what is the probability I <b> actually do </b> have it
+<li><b> NPV </b> - given that I tested <b> negative </b> what is the probability I <b> actually do not</b> have it
+</ul>
+
+<p align="center" style="font-size:18px">
+NPV and PPV can be described with numbers and formulas, but it is hard to get a feeling for what is really going on that way. Its a lot easier to look at nice pictures. In the plots below, we can calculate NPV and PPV in the following ways:
+</p>
+<ul>
+<li><b> PPV </b> - ~Ratio of Red to Blue in positive tests. Red represents sick patients testing positive, blue represents healthy patients testing positive. The fraction of red to all positive tests is exactly PPV.
+<li><b> NPV </b> - ~Ratio of Green to Orange in negative tests. Green represents healthy patients testing negative, orange represents sick patients testing negative. The fraction of green to all negative tests is exactly NPV.
+</ul>
+<p align="center" style="font-size:18px">
+Other notes on navigating the plots below: The first plot contains all the information you need, the rest are just fun duplicates. There are sliders which allow you to vary the prevalence, sensitivity, and specificity. Pay attention to what changes and what never changes when each slider is moved. Pay attention to the range of PPV and NPV values you can achieve by varying the three variables. And most importantly try to get a feel for why PPV and NPV behave like they do. Finally, the colored bar on each of the three below plots shows how the population would be divded into the four groups of sick, healthy, positive and negative testing.
+</p>
+
+<p align="center"><iframe src="https://npv-ppv.herokuapp.com/" frameborder="0" width="900" height="800" scrolling="no" /></iframe></p>
+<p align="center" style="font-size:18px">Here is the same information, but presented as circles instead of lines, because it looks nicer, and at least one person found it easier to understand this way. Circles provide a particularly intuitive sense of PPV and NPV - given you tested  positive (in the upper left circle), what is the probability that you are actually sick (in the red part of the circle)? This is just PPV, and it is just the ratio of the red area to the total circle area. Similarly, NPV is the probability that, given you are in the upper right circle, that you are in the green part of the circle. No math is needed to get a feel for these concepts. 
+</p>
+
+
+<p align="center"><iframe src="Prevalence_Round.html" frameborder="0" width="900" height="800" scrolling="no" /></iframe></p>
+<p align="center"><iframe src="Sensitivity_Round.html" frameborder="0" width="900" height="800" scrolling="no" /></iframe></p>
+<p align="center"><iframe src="Specificity_Round.html" frameborder="0" width="900" height="800" scrolling="no" /></iframe></p>
+
+
+Footer: 1. Yes, its prevalence, not prevalance. 2. The formatting on this page is not great. It might be improved in the future if there exists sufficent cause.
+
+ <a href='https://www.free-counters.org/'>https://www.free-Counters.org</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=ad001e0ab1bbef67fec491f027ef03ac0c1b9fd7'></script>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/702208/t/11"></script>
+
 </body>
 </html>
