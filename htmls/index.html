@@ -11,7 +11,7 @@
 <p align="center"><input type="image" src="https://raw.githubusercontent.com/robertej19/npv/master/htmls/htmlpics/Way2.jpg" alt="Submit" width="500" height="350"></p>
 
 <p align="center" style="font-size:18px">
-Negative and Positive predictive values are quantities formed from 3 independent variables. The math is interesting and straightforward, but is not usually presented as such. So here is an attempt at a clearer illustration. No equations here, just (hopefully) helpful plots, or at least more helpful than what is above. Negative Predictive Values (<b> NPV </b>) and Positive Predictive Values (<b>PPV</b>) are both functions of 3 variables:
+Negative and Positive predictive values are quantities formed from 3 independent variables. The math is interesting and straightforward, but is not usually presented as such. So here is an attempt at a clearer illustration. No equations here, just (hopefully) helpful plots, or at least more helpful than what is above. The point is to get across a feeling of <b><i>why</i></b> these quantities work the way they do, instead of just teaching how to calculate them. Negative Predictive Values (<b> NPV </b>) and Positive Predictive Values (<b>PPV</b>) are both functions of 3 variables:
 </p>
 <ul>
 <li><b> Prevalence </b> - how many people have it
@@ -46,7 +46,18 @@ In each case, it is just the probability that the result of the test is correct.
 Other notes on navigating the plots below: The first plot contains all the information you need, the rest are just fun duplicates. There are sliders which allow you to vary the prevalence, sensitivity, and specificity. Pay attention to what changes and what never changes when each slider is moved. Pay attention to the range of PPV and NPV values you can achieve by varying the three variables. And most importantly try to get a feel for why PPV and NPV behave like they do. Finally, the colored bar on each of the three below plots shows how the population would be divded into the four groups of sick, healthy, positive and negative testing.
 </p>
 
-<p align="center"><iframe src="https://npv-ppv.herokuapp.com/" frameborder="0" width="900" height="700" scrolling="no" /></iframe></p>
+<p align="center" style="font-size:18px">
+<div id="spinner">
+        <div>
+             <img align="middle" src="http://www.ajaxload.info/images/exemples/25.gif" />
+        </div>
+    </div>
+</p>
+
+<p align="center"><iframe border=0 name=iframe src="https://npv-ppv.herokuapp.com/" frameborder="0" width="900" height="700" scrolling="no" noresize frameborder="0" onload="document.getElementById('spinner').style.display='none';"></iframe>
+</p>
+
+
 <p align="center" style="font-size:18px">Here is the same information, but presented as circles instead of lines, because it looks nicer, and at least one person found it easier to understand this way. Circles provide a particularly intuitive sense of PPV and NPV - given you tested  positive (in the upper left circle), what is the probability that you are actually sick (in the red part of the circle)? This is just PPV, and it is just the ratio of the red area to the total circle area. Similarly, NPV is the probability that, given you are in the upper right circle, that you are in the green part of the circle. No math is needed to get a feel for these concepts.
 </p>
 
